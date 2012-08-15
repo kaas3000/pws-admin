@@ -22,7 +22,7 @@
         </div>
         <div id="middle">
             <div id="left-column">
-                <span class="slideMenu">
+                <span class="slideMenu leraren">
                 	<h2>Leraren</h2>
                 	<ul>
                 		{foreach from=$arrLeraren item=leraar}
