@@ -265,9 +265,19 @@ ul.nav li:last-child, .slideMenu li:last-child {border:none;}
 	display: none;
 }
 
+.slideMenu li {
+	height: 20px;
+}
+
 .slideMenu label {
 	width: 100%;
 	display: inline-block;
+	line-height: 20px;
+	padding-left: 2px;
+}
+
+.slideMenu label:hover {
+	text-decoration: underline;
 }
 
 .slideMenu input {

@@ -19,7 +19,9 @@ $arrTest = array(
     'drie' => "vier.html");
 
 $arrListing = array();$result = $afspraak->load();while ($row = mysql_fetch_array($result)) {	$arrListing[] = array(	'tijdVan' => $row['startTijd'],	'tijdTot' => $row['eindTijd'],	'voornaam' => $row['voornaam'],	'achternaam' => $row['achternaam'],	'leraar' => $row['roostercode'],	'lokaal' => $row['lokaalnummer']	);
-	$arrLeraren[] = $row['roostercode'];}
+	if (!in_array($row['roostercode'], $arrLeraren)) {
+		$arrLeraren[] = $row['roostercode'];
+	}}
 
 $smarty->assign("topMenu", $arrTest);
 $smarty->assign("topMenuActiveText", "Actief!");
