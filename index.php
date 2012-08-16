@@ -18,7 +18,16 @@ $arrTest = array(
     'een' => "twee.html",
     'drie' => "vier.html");
 
-$arrListing = array();$result = $afspraak->load();while ($row = mysql_fetch_array($result)) {	$arrListing[] = array(	'tijdVan' => $row['startTijd'],	'tijdTot' => $row['eindTijd'],	'voornaam' => $row['voornaam'],	'achternaam' => $row['achternaam'],	'leraar' => $row['roostercode'],	'lokaal' => $row['lokaalnummer']	);
+$arrListing = array();$result = $afspraak->load();while ($row = mysql_fetch_array($result)) {
+	$tijdUur = explode(":", $row['startTijd']);
+	if ($tijdUur[0] <= 19) {
+		$strClassTijd = "vroeg";
+	} elseif ($tijdUur[0] <= 20) {
+		$strClassTijd = "midden";
+	} else {
+		$strClassTijd = "laat";
+	}	$arrListing[] = array(	'tijdVan' => $row['startTijd'],	'tijdTot' => $row['eindTijd'],
+	'tijdClass' => $strClassTijd,	'voornaam' => $row['voornaam'],	'achternaam' => $row['achternaam'],	'leraar' => $row['roostercode'],	'lokaal' => $row['lokaalnummer']	);
 	if (!in_array($row['roostercode'], $arrLeraren)) {
 		$arrLeraren[] = $row['roostercode'];
 	}}

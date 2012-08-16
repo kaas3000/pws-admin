@@ -24,35 +24,6 @@ $(document).ready(function() {
 			// $(this).animate({height: "100px"},{duration: 1000});
 			// $(this).animate({height: "15px"},{duration: 1000});
 	});
-	
-// 	Laat het leraar-filter werken
-	$(".leraren > ul > li > label > input").change(function(){
-		// Alle andere aangevinkte checkboxes uitvinken
-		$(this).parents("label").parents("li").siblings().each(function(){
-			$(this).children("label").children("input:checkbox").attr("checked", false);
-		});
-		
-		// De kolommen die niet matchen eruit gooien
-		var leraar = $(this).parents("label").html().substr(0,3);
-		if (this.checked) {
-			$(".listing tr td").each(function() {
-				if ($(this).html() === leraar) {
-					$(this).parents("tr").siblings("tr:gt(0)").each(function() {
-						if ($(this).children("td:eq(2)").html() === leraar) {
-							// Doe niets
-						} else {
-							$(this).hide();
-						}
-					});
-				}
-			});
-		} else {
-			$(".listing tr:hidden").each(function() {
-				$(this).show();
-			});
-		}
-	});
-	
 });
 
 function echo(value) {

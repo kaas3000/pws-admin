@@ -6,6 +6,7 @@
     <link  href="css/admin.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/javascript.js"></script>
+    <script type="text/javascript" src="js/sortMenus.js"></script>
 </head>
 <body>
     <div id="main">
@@ -30,6 +31,15 @@
                 		{/foreach}
                 	</ul>
                 </span>
+                
+                <span class="slideMenu tijden">
+                	<h2>Tijden</h2>
+                	<ul>
+                		<li><label for="vroeg"><span>Vroeg</span><input type="checkbox" id="vroeg" /></label></li>
+                		<li><label for="midden"><span>Midden</span><input type="checkbox" id="midden" /></label></li>
+                		<li><label for="laat"><span>Laat</span><input type="checkbox" id="laat" /></label></li>
+                	</ul>
+                </span>
             </div>
             
             <div id="center-column">
@@ -51,7 +61,7 @@
 
 						{section name="afspraken" loop="$leerling"}
 <tr onselectstart="return: false;">
-								<td>{$leerling[afspraken].tijdVan} - {$leerling[afspraken].tijdTot}</td>
+								<td class="{$leerling[afspraken].tijdClass}">{$leerling[afspraken].tijdVan} - {$leerling[afspraken].tijdTot}</td>
 								<td>{$leerling[afspraken].voornaam} {$leerling[afspraken].achternaam}</td>
 								<td>{$leerling[afspraken].leraar}</td>
 								<td>{$leerling[afspraken].lokaal}</td>
