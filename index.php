@@ -13,6 +13,7 @@ $smarty->config_dir = "template/configs";
 $afspraak = new afspraak();
 
 $arrLeraren = array();
+$arrLokalen = array();
 
 $arrTest = array(
     'een' => "twee.html",
@@ -28,8 +29,12 @@ $arrListing = array();$result = $afspraak->load();while ($row = mysql_fetch_ar
 		$strClassTijd = "laat";
 	}	$arrListing[] = array(	'tijdVan' => $row['startTijd'],	'tijdTot' => $row['eindTijd'],
 	'tijdClass' => $strClassTijd,	'voornaam' => $row['voornaam'],	'achternaam' => $row['achternaam'],	'leraar' => $row['roostercode'],	'lokaal' => $row['lokaalnummer']	);
+	
 	if (!in_array($row['roostercode'], $arrLeraren)) {
 		$arrLeraren[] = $row['roostercode'];
+	}
+	if (!in_array($row['lokaalnummer'], $arrLokalen)) {
+		$arrLokalen[] = $row['lokaalnummer'];
 	}}
 
 $smarty->assign("topMenu", $arrTest);
@@ -37,6 +42,7 @@ $smarty->assign("topMenuActiveText", "Actief!");
 $smarty->assign("topMenuActiveRef", "hier verwijst het naartoe");
 $smarty->assign("leerling", $arrListing);
 $smarty->assign("arrLeraren", $arrLeraren);
+$smarty->assign("arrLokalen", $arrLokalen);
 
 $smarty->display("template.tpl");
 ?>

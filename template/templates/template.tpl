@@ -32,6 +32,15 @@
                 	</ul>
                 </span>
                 
+                <span class="slideMenu lokalen">
+                	<h2>Lokalen</h2>
+                	<ul>
+                		{foreach from=$arrLokalen item=lokaal}
+                		<li><label for="{$lokaal}">{$lokaal}<input type="checkbox" id="{$lokaal}" /></label></li>
+                		{/foreach}
+                	</ul>
+                </span>
+                
                 <span class="slideMenu tijden">
                 	<h2>Tijden</h2>
                 	<ul>

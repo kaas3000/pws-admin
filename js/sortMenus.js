@@ -1,37 +1,22 @@
 $(document).ready(function(){
+	/*
+	 * arrEisen[0]  =  leraar (roostercode: VGL)
+	 * arrEisen[1]  =  tijd (vroeg/midden/laat)
+	 * arrEisen[2]  =  lokaal (integer)
+	 */
+	var arrEisen = new Array();
 	$(".leraren > ul > li > label > input").change(function(){
 		// Alle andere aangevinkte checkboxes uitvinken
 		$(this).parents("label").parents("li").siblings().each(function(){
 			$(this).children("label").children("input:checkbox").attr("checked", false);
 		});
 		
-		// De kolommen die niet matchen eruit gooien
-		var leraar = $(this).parents("label").html().substr(0,3);
-		
-		// Eventuele :hidden tabelregels weer laten verschijnen
-		$(".listing tr:hidden").each(function(){
-			if ($(this).children("td:eq(2)").html() === leraar) {
-				$(this).show();
-			}
-		});
-		
-		// De kolommen die niet matchen eruit gooien (vervolg)
-		if (this.checked) {
-			$(".listing tr td").each(function() {
-				if ($(this).html() === leraar) {
-					$(this).parents("tr").siblings("tr:gt(0)").each(function() {
-						if ($(this).children("td:eq(2)").html() === leraar) {
-							// Doe niets
-						} else {
-							$(this).hide();
-						}
-					});
-				}
-			});
+		if (!this.checked) {
+			arrEisen[0] = null;
+			sortRooster();
 		} else {
-			$(".listing tr:hidden").each(function() {
-				$(this).show();
-			});
+			arrEisen[0] = $(this).attr("id");
+			sortRooster();
 		}
 	});
 	
@@ -41,24 +26,69 @@ $(document).ready(function(){
 			$(this).children("label").children("input:checkbox").attr("checked", false);
 		});
 		
-		var tijd = $(this).attr("id");
-		
-		$(".listing tr:hidden").each(function(){
-			if ($(this).children("td:eq(0)").hasClass(tijd)) {
-				$(this).show();
-			}
+		if (!this.checked) {
+			arrEisen[1] = null;
+			sortRooster();
+			console.log(arrEisen);
+		} else {
+			arrEisen[1] = $(this).attr("id");
+			sortRooster();
+		}
+	});
+	
+	$(".lokalen > ul > li > label > input").change(function() {
+		// Alle andere aangevinkte checkboxes uitvinken
+		$(this).parents("label").parents("li").siblings().each(function(){
+			$(this).children("label").children("input:checkbox").attr("checked", false);
 		});
 		
-		if (this.checked) {
-			$(".listing tr:gt(0)").each(function(){
-				if (!$(this).children("td:eq(0)").hasClass(tijd)) {
-					$(this).hide();
-				}
-			});
+		if (!this.checked) {
+			arrEisen[2] = null;
+			sortRooster();
+			// console.log(arrEisen);
 		} else {
-			$("tr").each(function(){
-				$(this).show;
-			});
-		};
-	});
+			arrEisen[2] = $(this).attr("id")
+			sortRooster();
+		}
+	})
+	
+	function sortRooster() {
+		// console.log(arrEisen);
+		$(".listing tr:gt(0)").each(function() {
+			var intCounter = 0;
+			$(this).hide();
+			if ($(this).children("td:eq(2)").html() === arrEisen[0]) {
+				// $(this).show();
+				intCounter++;
+				// console.log("leraar");
+			}
+			if ($(this).children("td:eq(0)").hasClass(arrEisen[1])) {
+				// $(this).show();
+				intCounter++;
+				// console.log("tijd");
+			}
+			if ($(this).children("td:eq(3)").html() === arrEisen[2]) {
+				// $(this).show();
+				intCounter++;
+				// console.log("lokaal");
+			}
+			
+			var arrEisen_length = 0;
+			if (arrEisen[0]) {
+				arrEisen_length++;
+			}
+			if (arrEisen[1]) {
+				arrEisen_length++;
+			}
+			if (arrEisen[2]) {
+				arrEisen_length++;
+			}
+			
+			// console.log(intCounter + " - " + arrEisen_length);
+			if (arrEisen_length === intCounter) {
+				$(this).show();
+				console.log("TRUE!!! " + arrEisen + " - " + arrEisen_length);
+			}
+		});
+	}
 });
