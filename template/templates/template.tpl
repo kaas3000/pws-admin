@@ -69,7 +69,7 @@
                         </tr>
 
 						{section name="afspraken" loop="$leerling"}
-<tr onselectstart="return: false;">
+<tr >
 								<td class="{$leerling[afspraken].tijdClass}">{$leerling[afspraken].tijdVan} - {$leerling[afspraken].tijdTot}</td>
 								<td>{$leerling[afspraken].voornaam} {$leerling[afspraken].achternaam}</td>
 								<td>{$leerling[afspraken].leraar}</td>

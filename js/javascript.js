@@ -10,19 +10,40 @@ $(document).ready(function() {
 	$(".listing > tbody > tr:not(:first)").dblclick(function() {
 		if ($(this).height() === 28) {
 			$(this).animate({
-				height: 100
+				height: 40
 			},{
-				duration: 200
+				duration: 100
 			});
+			$(this).addClass('editing');
+			var _sHTML;
+			var _intWidth;
+			$(this).children('td').not(':last').each(function(index) {
+			  _sHTML = '<input type="text" value="' + $(this).html() + '" />';
+			  _intWidth = $(this).width();
+			  $(this).width(_intWidth);
+			  console.log(_intWidth);
+			  $(this).html(_sHTML);
+			});
+			_sHTML = '<img src="img/hr.gif" />\n<img src="img/save-icon.gif" width="18" height="18" />';
+			$(this).children('td:last').html(_sHTML);
+			// var _strHTML = '<input type="text" value="' + $(this).attr('id') + '" />'
+			// $(this).append('<br /><input type="text" />');
 		} else {
 			$(this).animate({
 				height: 28
 			},{
 				duration: 200
-			})
+			});
+			var _sHTML;
+			$(this).children('td').not(':last').each(function(index) {
+			  var _value = $(this).children('input:text').val();
+			  $(this).html(_value);
+			  console.log(_value);
+			  /*
+			   * De AJAX functie!!!
+			   */
+			});
 		}
-			// $(this).animate({height: "100px"},{duration: 1000});
-			// $(this).animate({height: "15px"},{duration: 1000});
 	});
 });
 
