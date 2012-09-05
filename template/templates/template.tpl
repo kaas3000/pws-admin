@@ -71,7 +71,7 @@
 						{section name="afspraken" loop="$leerling"}
 <tr >
 								<td class="{$leerling[afspraken].tijdClass}">{$leerling[afspraken].tijdVan} - {$leerling[afspraken].tijdTot}</td>
-								<td>{$leerling[afspraken].voornaam} {$leerling[afspraken].achternaam}</td>
+								<td id="{$leerling[afspraken].leerling_ID}">{$leerling[afspraken].voornaam} {$leerling[afspraken].achternaam}</td>
 								<td>{$leerling[afspraken].leraar}</td>
 								<td>{$leerling[afspraken].lokaal}</td>
 							    <td class="listingMenu">

@@ -29,7 +29,6 @@ $(document).ready(function(){
 		if (!this.checked) {
 			arrEisen[1] = null;
 			sortRooster();
-			console.log(arrEisen);
 		} else {
 			arrEisen[1] = $(this).attr("id");
 			sortRooster();
@@ -45,7 +44,6 @@ $(document).ready(function(){
 		if (!this.checked) {
 			arrEisen[2] = null;
 			sortRooster();
-			// console.log(arrEisen);
 		} else {
 			arrEisen[2] = $(this).attr("id")
 			sortRooster();
@@ -53,24 +51,17 @@ $(document).ready(function(){
 	})
 	
 	function sortRooster() {
-		// console.log(arrEisen);
 		$(".listing tr:gt(0)").each(function() {
 			var intCounter = 0;
 			$(this).hide();
 			if ($(this).children("td:eq(2)").html() === arrEisen[0]) {
-				// $(this).show();
 				intCounter++;
-				// console.log("leraar");
 			}
 			if ($(this).children("td:eq(0)").hasClass(arrEisen[1])) {
-				// $(this).show();
 				intCounter++;
-				// console.log("tijd");
 			}
 			if ($(this).children("td:eq(3)").html() === arrEisen[2]) {
-				// $(this).show();
 				intCounter++;
-				// console.log("lokaal");
 			}
 			
 			var arrEisen_length = 0;
@@ -84,10 +75,8 @@ $(document).ready(function(){
 				arrEisen_length++;
 			}
 			
-			// console.log(intCounter + " - " + arrEisen_length);
 			if (arrEisen_length === intCounter) {
 				$(this).show();
-				console.log("TRUE!!! " + arrEisen + " - " + arrEisen_length);
 			}
 		});
 	}

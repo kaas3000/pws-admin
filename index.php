@@ -28,7 +28,8 @@ $arrListing = array();$result = $afspraak->load();while ($row = mysql_fetch_ar
 	} else {
 		$strClassTijd = "laat";
 	}	$arrListing[] = array(	'tijdVan' => $row['startTijd'],	'tijdTot' => $row['eindTijd'],
-	'tijdClass' => $strClassTijd,	'voornaam' => $row['voornaam'],	'achternaam' => $row['achternaam'],	'leraar' => $row['roostercode'],	'lokaal' => $row['lokaalnummer']	);
+	'tijdClass' => $strClassTijd,	'voornaam' => $row['voornaam'],	'achternaam' => $row['achternaam'],
+	'leerling_ID' => $row['leerling_ID'],	'leraar' => $row['roostercode'],	'lokaal' => $row['lokaalnummer']	);
 	
 	if (!in_array($row['roostercode'], $arrLeraren)) {
 		$arrLeraren[] = $row['roostercode'];
