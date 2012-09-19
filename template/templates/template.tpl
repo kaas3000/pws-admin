@@ -3,8 +3,10 @@
 <head>
     <title>Admin</title>
     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-    <link  href="css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="css/ui-lightness/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.23.custom.min.js"></script>
     <script type="text/javascript" src="js/javascript.js"></script>
     <script type="text/javascript" src="js/sortMenus.js"></script>
 </head>
@@ -69,7 +71,7 @@
                         </tr>
 
 						{section name="afspraken" loop="$leerling"}
-<tr >
+<tr id="{$leerling[afspraken].id}">
 								<td class="{$leerling[afspraken].tijdClass}">{$leerling[afspraken].tijdVan} - {$leerling[afspraken].tijdTot}</td>
 								<td id="{$leerling[afspraken].leerling_ID}">{$leerling[afspraken].voornaam} {$leerling[afspraken].achternaam}</td>
 								<td>{$leerling[afspraken].leraar}</td>

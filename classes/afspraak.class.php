@@ -24,7 +24,7 @@ class afspraak {
 	public function load($id=-1) {
 		if ($id == -1) {
 			$q =
-				'SELECT rooster.startTijd, rooster.eindTijd, rooster.leerling_ID, rooster.lokaalnummer, leerlingen.voornaam, leerlingen.achternaam, leraren.roostercode
+				'SELECT rooster.id, rooster.startTijd, rooster.eindTijd, rooster.leerling_ID, rooster.lokaalnummer, leerlingen.voornaam, leerlingen.achternaam, leraren.roostercode
 				FROM rooster 
 				JOIN leerlingen ON leerlingen.id = rooster.leerling_ID
 				JOIN leraren ON leraren.id = rooster.leraar_ID
